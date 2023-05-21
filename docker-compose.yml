@@ -1,0 +1,49 @@
+#NOTA: al no indicar el puerto de mi pc en "ports" hace que no podamos acceder a ese servicio
+#por si solo, solo se puede acceder a traces del gateway (es solo sirve en el entorno local),
+#para el entorno en la nube es necesario indicarle el puerto de mi PC, la maquina virtual se 
+#encargar de solo permitir el acceso a traves del gateway con la configurarion de la maquin virtual
+
+#Version de Docker compose
+version: '2'
+
+#Listar los microservicios creados hasta el momentos
+services:
+#Micorservicio Gateway
+  gateway:
+    container_name: gateway
+    restart: always #Ante cualquier falla, esta preparado para que se vuelva a reiniciar el servicio
+    build: ./gateway #Ubiacion del archivo de dcoker para construir este contenedor
+    ports:
+       - "8000:8000" #[puerto 8000 de mi PC]:[puerto 8000 del contenedor]
+
+#Micorservicio Characters
+  characters:
+    container_name: characters
+    restart: always #Ante cualquier falla, esta preparado para que se vuelva a reiniciar el servicio
+    build: ./characters #Ubiacion del archivo de dcoker para construir este contenedor
+    ports:
+       - "8001:8001" #[ningun puerto de mi PC]:[puerto 8001 del contenedor]
+
+#Micorservicio Films
+  films:
+    container_name: films
+    restart: always #Ante cualquier falla, esta preparado para que se vuelva a reiniciar el servicio
+    build: ./films #Ubiacion del archivo de dcoker para construir este contenedor
+    ports:
+       - "8002:8002" #[ningun puerto de mi PC]:[puerto 8002 del contenedor]
+
+#Micorservicio Planets
+  planets:
+    container_name: planets
+    restart: always #Ante cualquier falla, esta preparado para que se vuelva a reiniciar el servicio
+    build: ./planets #Ubiacion del archivo de dcoker para construir este contenedor
+    ports:
+       - "8003:8003" #[ningun puerto de mi PC]:[puerto 8003 del contenedor]
+
+#Micorservicio Database
+  database:
+    container_name: database
+    restart: always #Ante cualquier falla, esta preparado para que se vuelva a reiniciar el servicio
+    build: ./database #Ubiacion del archivo de dcoker para construir este contenedor
+    ports:
+       - "8004:8004" #[ningun puerto de mi PC]:[puerto 8004 del contenedor]
